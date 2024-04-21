@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pokemon</title>
+</head>
+<style>
+    body{
+        display: flex;
+            justify-content: center;
+            height: 99vh;
+            align-items: center;
+            background-color: rgb(188, 200, 212);
+        }
+
+        .card{
+            height: 80%;
+            width: 50%;
+            background-color: whitesmoke;
+            padding: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+            border-radius: 1rem;
+            box-shadow: 10px 10px 4px #b3b2b2;        }
+
+        h1{
+            font-size: 72px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: linear-gradient(180deg, #1e7941, #32cec6);
+            background-clip: text;
+            color: transparent;
+            text-shadow: 5px 5px rgb(83, 82, 82);
+        }
+
+        p{
+            /* background-color: red; */
+            color: grey;
+            font-size: large;
+        }
+
+        p.pokeName{
+            color: green;
+            font-size: 30px;
+        }
+
+        input{
+            border-radius: 0.5rem;
+            padding: 5px 6px;
+        }
+
+        button{
+            border-radius: 5px;
+            padding: 5px 6px;
+            color: white;
+            background-color: black;
+        }
+
+    </style>
+<body>
+    <div class="card">
+        
+        <h1>POKEMON</h1>
+        <form action="submit">
+            <input type="text">
+            <button class="pokeButton" type="button">SUBMIT</button>
+        </form>
+
+        <p>pokemon Name: </p> 
+        <p class="pokeName">bro</p>
+        <img class="pokeImg" alt="">
+        
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+    <script>
+        $(document).ready(function(){
+
+            $(".pokeButton").on("click", function(){
+                const value = $('input').val()
+                console.log(value) 
+
+                $.get(`https://pokeapi.co/api/v2/pokemon/${value}`, function(data){
+                    $(".pokeName").text(`${data.name}`)
+                $('.pokeImg').attr('src', data.sprites.front_default)    
+            }) 
+            })
+
+
+        })
+        
+
+    </script>
+</body>
+</html>
